@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"
+          p:host="smtp.qq.com" p:username="vinc" p:password="lenovoX200"
+          p:port="25" p:defaultEncoding="utf-8">
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.timeout">25000</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="velocityEngine"
+          class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="resourceLoaderPath" value="classpath:templates/"/>
+        <property name="preferFileSystemAccess" value="false"/>
+    </bean>
+
+    <bean id="mailer" class="com.vinc.core.mail.Mailer"
+          p:mailSender-ref="mailSender" p:velocityEngine-ref="velocityEngine"/>
+
+</beans>

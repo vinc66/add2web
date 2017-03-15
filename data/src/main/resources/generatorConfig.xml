@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!--<generatorConfiguration>
+    &lt;!&ndash;mysql 连接数据库jar 这里选择自己本地位置&ndash;&gt;
+    <classPathEntry location="D:/workspace/mysql-connector-java-5.1.16.jar" />
+    <context id="testTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            &lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        &lt;!&ndash;数据库连接的信息：驱动类、连接地址、用户名、密码 &ndash;&gt;
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/video" userId="root"
+                        password="123123">
+        </jdbcConnection>
+        &lt;!&ndash; 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+           NUMERIC 类型解析为java.math.BigDecimal &ndash;&gt;
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        &lt;!&ndash; targetProject:生成PO类的位置 &ndash;&gt;
+        <javaModelGenerator targetPackage="cn.vinc.domain.video"
+                            targetProject="src/main/java">
+            &lt;!&ndash; enableSubPackages:是否让schema作为包的后缀 &ndash;&gt;
+            <property name="enableSubPackages" value="false" />
+            &lt;!&ndash; 从数据库返回的值被清理前后的空格 &ndash;&gt;
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        &lt;!&ndash; targetProject:mapper映射文件生成的位置
+           如果maven工程只是单独的一个工程，targetProject="src/main/java"
+           若果maven工程是分模块的工程，targetProject="所属模块的名称"，例如：
+           targetProject="ecps-manager-mapper"，下同&ndash;&gt;
+        <sqlMapGenerator targetPackage="cn.vinc.data.mapper"
+                         targetProject="src/main/resources">
+            &lt;!&ndash; enableSubPackages:是否让schema作为包的后缀 &ndash;&gt;
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        &lt;!&ndash; targetPackage：mapper接口生成的位置 &ndash;&gt;
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="cn.vinc.data.mapper"
+                             targetProject="src/main/java">
+            &lt;!&ndash; enableSubPackages:是否让schema作为包的后缀 &ndash;&gt;
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+        &lt;!&ndash; 指定数据库表 &ndash;&gt;
+        <table schema="" tableName="t_eye_video" domainObjectName="Video"></table>
+        &lt;!&ndash;<table schema="" tableName="success_killed"></table>&ndash;&gt;
+    </context>-->
+
+
+<generatorConfiguration>
+    <classPathEntry location="D:/workspace/mysql-connector-java-5.1.16.jar" />
+    <!-- 配置数据源和生成的代码所存放的位置 -->
+    <context id="context1">
+
+        <commentGenerator>
+            <!-- 避免生成注解 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/add2web" userId="root"
+                        password="123123">
+        </jdbcConnection>
+        <!-- 所生成的实体类的位置默认资源包src -->
+        <javaModelGenerator targetPackage="com.vinc.domain" targetProject="src/main/java" />
+        <!-- 所生成的sqlMap的影射文件的位置,默认资源包src -->
+        <sqlMapGenerator targetPackage="com.vinc.data.mapper" targetProject="src/main/resources" />
+        <javaClientGenerator targetPackage="com.vinc.data.mapper" targetProject="src/main/java" type="XMLMAPPER"   />
+        <!-- 为哪些表生成代码 tableName:表名 schema:不用填写 -->
+
+        <table schema="" tableName="user" domainObjectName="User" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false"
+        >
+
+
+        </table>
+    </context>
+</generatorConfiguration>

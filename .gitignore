@@ -27,8 +27,8 @@
 # .idea/mongoSettings.xml
 
 ## File-based project format:
-*.ipr
-*.iws
+#*.ipr
+#*.iws
 
 ## Plugin-specific files:
 
@@ -164,5 +164,3 @@ $RECYCLE.BIN/
 hs_err_pid*
 
 # Created by .ignore support plugin (hsz.mobi)
-
-

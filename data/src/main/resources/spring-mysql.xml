@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder
+            location="classpath*:config-mysql.properties,classpath:config-druid-pool.properties"
+            file-encoding="UTF-8"
+            ignore-unresolvable="true"/>
+
+    <context:component-scan base-package="com.vinc.data"/>
+
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="viDataSource"></property>
+        <property name="typeAliasesPackage" value="com.vinc.domain"></property>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.vinc.data.mapper"></property>
+    </bean>
+
+
+    <bean abstract="true" id="parentDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${druid.pool.init.size}"/>
+        <property name="minIdle" value="${druid.pool.min.size}"/>
+        <property name="maxActive" value="${druid.pool.max.size}"/>
+
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="${druid.pool.max.wait.time}"/>
+
+        <property name="queryTimeout" value="${druid.pool.query.time}"/>
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <!--<property name="poolPreparedStatements" value="true"/>-->
+        <!--<property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>-->
+
+        <!-- 配置监控统计拦截的filters -->
+        <!--<property name="filters" value="stat"/>-->
+    </bean>
+
+    <bean id="viDataSource" parent="parentDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.vi.url}"/>
+        <property name="username" value="${jdbc.vi.username}"/>
+        <property name="password" value="${jdbc.vi.password}"/>
+    </bean>
+
+    <bean id="biDataSource" parent="parentDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.bi.url}"/>
+        <property name="username" value="${jdbc.bi.username}"/>
+        <property name="password" value="${jdbc.bi.password}"/>
+    </bean>
+
+    <bean id="multipleDataSource" class="com.vinc.data.datasource.MultipleDataSourceRouter">
+        <property name="defaultTargetDataSource" ref="viDataSource"/>
+        <property name="targetDataSources">
+            <map>
+                <entry key="vi" value-ref="viDataSource"/>
+                <entry key="bi" value-ref="biDataSource"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+          p:dataSource-ref="multipleDataSource"
+          p:lazyInit="true"/>
+
+</beans>
