@@ -63,7 +63,11 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="Methods"/>
     </aop:config>
 
-    <import resource="spring-sms.xml"/>
+    <import resource="classpath*:spring-sms.xml"/>
     <import resource="classpath*:spring-mail.xml"/>
     <import resource="classpath*:spring-mysql.xml"/>
+    <import resource="classpath*:spring-redis.xml"/>
+    <import resource="classpath*:spring-redis-cluster.xml"/>
+
+
 </beans>

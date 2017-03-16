@@ -1,6 +1,7 @@
 package com.vinc.web.controller;
 
-import com.vinc.domain.User;
+import com.vinc.data.repository.ClusterRepository;
+import com.vinc.data.repository.SingleRepository;
 import com.vinc.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,12 +19,24 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private SingleRepository singleRepository;
+    @Autowired
+    private ClusterRepository clusterRepository;
 
     @RequestMapping("/getUser")
     public String getUser(Model model) {
-        User user = userService.getUserById(1);
-        System.out.print(user);
-        model.addAttribute("user",user);
+//        redis single test
+//        String str = singleRepository.getName("engine:slot:-524190008");
+//        System.out.println(str+"------------------single");
+
+//        redis cluster test
+//        String name = clusterRepository.getClusterName("engine:slot:-1879326606");
+//        System.out.println(name+"------------------cluster");
+
+          //mysql test
+//        User user = userService.getUserById(1);
+//        System.out.println(user);
         return "index";
     }
 

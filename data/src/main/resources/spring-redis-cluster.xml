@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:list id="listOfNodes">
+        <value>test.redis.in:7000</value>
+        <value>test.redis.in:7001</value>
+        <value>test.redis.in:7002</value>
+    </util:list>
+
+    <bean id="clusterConfig" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+        <constructor-arg name="clusterNodes" ref="listOfNodes"/>
+        <property name="maxRedirects" value="${redis.cluster.max-redirects}"/>
+    </bean>
+
+    <bean id="jedisClusterPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${jedis.cluster.pool.max-total}"/>
+        <property name="maxIdle" value="${jedis.cluster.pool.max-idle}"/>
+        <property name="maxWaitMillis" value="${jedis.cluster.pool.max-wait-millis}"/>
+        <property name="testOnBorrow" value="${jedis.cluster.pool.test-on-borrow}"/>
+    </bean>
+
+    <bean id="jedisClusterConnectionFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:timeout="500">
+        <constructor-arg name="clusterConfig" ref="clusterConfig"/>
+        <constructor-arg name="poolConfig" ref="jedisClusterPoolConfig"/>
+    </bean>
+
+    <bean id="redisClusterTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+          p:connectionFactory-ref="jedisClusterConnectionFactory"/>
+
+    <import resource="spring-redis-parent.xml"/>
+
+</beans>
