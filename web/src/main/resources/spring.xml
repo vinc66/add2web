@@ -66,8 +66,13 @@
     <import resource="classpath*:spring-sms.xml"/>
     <import resource="classpath*:spring-mail.xml"/>
     <import resource="classpath*:spring-mysql.xml"/>
-    <import resource="classpath*:spring-redis.xml"/>
+    <!--redis-->
+    <!--<import resource="classpath*:spring-redis.xml"/>
     <import resource="classpath*:spring-redis-cluster.xml"/>
-
+-->
+    <!--mongodb-->
+    <!--<import resource="classpath*:spring-mongo.xml"/>
+    <import resource="classpath*:spring-mongo-cluster.xml"/>
+-->
 
 </beans>

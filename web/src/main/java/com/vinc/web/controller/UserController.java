@@ -1,7 +1,7 @@
 package com.vinc.web.controller;
 
-import com.vinc.data.repository.ClusterRepository;
-import com.vinc.data.repository.SingleRepository;
+import com.vinc.data.repository.redis.ClusterRepository;
+import com.vinc.data.repository.redis.SingleRepository;
 import com.vinc.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

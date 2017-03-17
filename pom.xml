@@ -20,6 +20,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
+        <mongodb.version>1.9.6.RELEASE</mongodb.version>
         <jedis.version>2.9.0</jedis.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <spring.version>4.2.8.RELEASE</spring.version>
@@ -45,6 +46,15 @@
 
     <dependencyManagement>
         <dependencies>
+
+
+            <!--mongodb start-->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-mongodb</artifactId>
+                <version>${mongodb.version}</version>
+            </dependency>
+            <!--mongodb end-->
 
             <!--redis start-->
             <dependency>

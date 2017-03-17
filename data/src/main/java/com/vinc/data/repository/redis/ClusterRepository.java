@@ -1,4 +1,4 @@
-package com.vinc.data.repository;
+package com.vinc.data.repository.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -15,7 +15,8 @@ public class ClusterRepository {
     @Autowired
     private StringRedisTemplate redisClusterTemplate;
 
-    public String getClusterName(String name) {
-        return redisClusterTemplate.opsForValue().get(name);
+    public String getClusterName(String id) {
+        return redisClusterTemplate.opsForValue().get(KeyUtis.getBook(id));
     }
+
 }
