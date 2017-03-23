@@ -20,6 +20,12 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>add2web</groupId>
+            <artifactId>auth-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
@@ -52,6 +58,7 @@
             <artifactId>kaptcha</artifactId>
             <version>${kaptcha.version}</version>
         </dependency>
+
     </dependencies>
 
 </project>

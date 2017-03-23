@@ -4,7 +4,6 @@ import com.vinc.domain.mongo.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
  * @Description:
  * @Date: created in 11:08 2017/3/17
  */
-@Component
+//@Component
 public class CategoryRepositroy {
     @Autowired
     private MongoTemplate mongoTemplate;

@@ -9,10 +9,10 @@
     </appender>
 
     <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="DEBUG"/>
-    <logger name="org.springframework" level="INFO"/>
-    <logger name="com.mchange" level="INFO"/>
+    <logger name="org.springframework" level="DEBUG"/>
+    <logger name="com.mchange" level="DEBUG"/>
     <logger name="org.apache.curator" level="DEBUG"/>
-    <logger name="org.apache" level="INFO"/>
+    <logger name="org.apache" level="DEBUG"/>
 
     <root level="DEBUG">
         <appender-ref ref="CONSOLE"/>

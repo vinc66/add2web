@@ -36,7 +36,7 @@ public class SpringTestClazz {
         Criteria criteria = new Criteria();
         criteria.and("name").in("历史");
         query.addCriteria(criteria);
-        print(categoryRepositroy.getCategory(query));
+//        print(categoryRepositroy.getCategory(query));
     }
 
     private void print(Object obj) {

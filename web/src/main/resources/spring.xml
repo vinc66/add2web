@@ -39,6 +39,15 @@
             </bean>
         </property>
     </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="viDataSource"></property>
+        <property name="typeAliasesPackage" value="com.vinc.domain"></property>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.vinc.data.mapper"></property>
+    </bean>
     <!--事务-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="viDataSource"/>
@@ -66,13 +75,15 @@
     <import resource="classpath*:spring-sms.xml"/>
     <import resource="classpath*:spring-mail.xml"/>
     <import resource="classpath*:spring-mysql.xml"/>
+
+    <import resource="classpath:spring-dubbo.xml"/>
     <!--redis-->
-    <!--<import resource="classpath*:spring-redis.xml"/>
-    <import resource="classpath*:spring-redis-cluster.xml"/>
--->
+    <!--<import resource="classpath*:spring-redis.xml"/>-->
+    <!--<import resource="classpath*:spring-redis-cluster.xml"/>-->
+
     <!--mongodb-->
-    <!--<import resource="classpath*:spring-mongo.xml"/>
-    <import resource="classpath*:spring-mongo-cluster.xml"/>
--->
+    <!--<import resource="classpath*:spring-mongo.xml"/>-->
+    <!--<import resource="classpath*:spring-mongo-cluster.xml"/>-->
+
 
 </beans>

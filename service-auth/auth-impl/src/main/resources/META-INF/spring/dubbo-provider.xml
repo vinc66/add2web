@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task.xsd
+		http://code.alibabatech.com/schema/dubbo
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <task:annotation-driven/>
+
+    <context:component-scan base-package="com.vinc.service.auth">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+
+    <context:property-placeholder
+            location="classpath*:dubbo.properties"
+            file-encoding="UTF-8"
+            ignore-unresolvable="true"/>
+
+    <bean id="accountService" class="com.vinc.service.auth.impl.AccountServiceImpl"/>
+   <!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="multipleDataSource"/>
+        <property name="typeAliasesPackage" value="cn.nhorizon.ads.cms.domain"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.nhorizon.ads.monitor.mapper"/>
+    </bean>-->
+
+    <dubbo:application name="${dubbo.application.name}" />
+    <dubbo:protocol   serialization="fastjson" port="${dubbo.protocol.port}" />
+    <dubbo:registry address="zookeeper://${dubbo.registry.address}"/>
+
+    <dubbo:service interface="com.vinc.service.auth.AccountService" ref="accountService"
+                   version="1.0"
+                   timeout="10000"/>
+
+    <!--<import resource="classpath*:spring-mysql.xml"/>-->
+</beans>
