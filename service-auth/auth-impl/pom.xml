@@ -14,12 +14,12 @@
         <dependency>
             <groupId>add2web</groupId>
             <artifactId>auth-api</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>add2web</groupId>
             <artifactId>data</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
             <dependency>
             <groupId>mysql</groupId>
