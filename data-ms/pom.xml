@@ -9,9 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <description>数据源切换,mongodb,redis</description>
-
-    <artifactId>data</artifactId>
+    <description>主从分离</description>
+    <artifactId>data-ms</artifactId>
 
     <dependencies>
         <dependency>
@@ -30,18 +29,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-mongodb</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
         </dependency>
         <dependency>
             <groupId>cglib</groupId>
@@ -67,38 +54,10 @@
             <version>4.2.8.RELEASE</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
-
-    <!--<build>
-        <plugins>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.2</version>
-                <configuration>
-                    &lt;!&ndash;配置文件的位置&ndash;&gt;
-                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
-                    <verbose>true</verbose>
-                    <overwrite>true</overwrite>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>Generate MyBatis Artifacts</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.mybatis.generator</groupId>
-                        <artifactId>mybatis-generator-core</artifactId>
-                        <version>1.3.2</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>-->
-
 
 </project>

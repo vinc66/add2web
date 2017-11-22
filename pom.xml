@@ -16,6 +16,7 @@
         <module>service</module>
         <module>web</module>
         <module>service-auth</module>
+        <module>data-ms</module>
     </modules>
 
     <properties>
@@ -424,7 +425,7 @@
 
             <!-- captcha start -->
             <dependency>
-                <groupId>com.google.code</groupId>
+                <groupId>com.github.penggle</groupId>
                 <artifactId>kaptcha</artifactId>
                 <version>${kaptcha.version}</version>
             </dependency>
@@ -566,31 +567,6 @@
         </extensions>
     </build>
 
-
-
-    <repositories>
-        <repository>
-            <id>public-repository</id>
-            <name>public-repository</name>
-            <url>http://mvn.nhorizon.cn/content/groups/public/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>Nexus Release Repository</name>
-            <url>http://mvn.nhorizon.cn/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>Nexus Snapshot Repository</name>
-            <url>http://mvn.nhorizon.cn/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <profiles>
         <profile>

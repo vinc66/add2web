@@ -12,9 +12,15 @@
     <artifactId>service</artifactId>
 
     <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>add2web</groupId>-->
+            <!--<artifactId>data</artifactId>-->
+            <!--<version>${project.parent.version}</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>add2web</groupId>
-            <artifactId>data</artifactId>
+            <artifactId>data-ms</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 

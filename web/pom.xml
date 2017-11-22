@@ -11,7 +11,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kaptcha.version>2.3.2</kaptcha.version>
     </properties>
     <dependencies>
         <dependency>
@@ -54,10 +53,14 @@
             <artifactId>zkclient</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.google.code</groupId>
+            <groupId>com.github.penggle</groupId>
             <artifactId>kaptcha</artifactId>
-            <version>${kaptcha.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
 
     </dependencies>
 

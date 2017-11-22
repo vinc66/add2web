@@ -19,4 +19,9 @@ public class UserService {
     public User getUserById(int id) {
         return userMapper.selectByPrimaryKey(id);
     }
+
+    public void addUser(User recode){
+        userMapper.insert(recode);
+    }
+
 }

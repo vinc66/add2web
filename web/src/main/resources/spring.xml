@@ -2,34 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:task="http://www.springframework.org/schema/task"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
-        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--扫描包-->
-    <context:component-scan base-package="com.vinc" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-        <context:include-filter type="annotation" expression="javax.inject.Named"/>
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-    </context:component-scan>
+
+    <context:component-scan base-package="com.vinc"/>
     <!--注入配置文件-->
     <context:property-placeholder location="classpath:web-config.properties" ignore-unresolvable="true" order="9"/>
-    <!--直接给参数赋值-->
-    <util:properties id="webConfig" location="classpath:web-config.properties"/>
-    <!--定时任务-->
-    <task:executor id="taskExecutor" pool-size="3"/>
-    <task:annotation-driven executor="taskExecutor"/>
     <!--验证码-->
     <util:properties id="kaptchaConfig" location="classpath:kaptcha-config.properties"/>
     <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
@@ -40,50 +22,8 @@
         </property>
     </bean>
 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="viDataSource"></property>
-        <property name="typeAliasesPackage" value="com.vinc.domain"></property>
-    </bean>
-
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.vinc.data.mapper"></property>
-    </bean>
-    <!--事务-->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="viDataSource"/>
-    </bean>
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="add*"/>
-            <tx:method name="save*"/>
-            <tx:method name="update*"/>
-            <tx:method name="delete*"/>
-            <tx:method name="*" read-only="true"/>
-        </tx:attributes>
-    </tx:advice>
-    <aop:config>
-       <!-- <aop:pointcut id="Methods"
-                      expression="execution(* com.vinc.service..*.*(..)) and !execution(* com.vinc.service.service.FileUploadService.*(..)) and !execution(* com.vinc.service.*StatisticService.*(..))"/>
--->
-        <aop:pointcut id="Methods"
-                      expression="execution(* com.vinc.service..*.*(..))" />
-
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="Methods"/>
-    </aop:config>
-
-    <import resource="classpath*:spring-sms.xml"/>
-    <import resource="classpath*:spring-mail.xml"/>
-    <import resource="classpath*:spring-mysql.xml"/>
-
-    <import resource="classpath:spring-dubbo.xml"/>
-    <!--redis-->
-    <!--<import resource="classpath*:spring-redis.xml"/>-->
-    <!--<import resource="classpath*:spring-redis-cluster.xml"/>-->
-
-    <!--mongodb-->
-    <!--<import resource="classpath*:spring-mongo.xml"/>-->
-    <!--<import resource="classpath*:spring-mongo-cluster.xml"/>-->
+    <import resource="classpath:spring-mybatis.xml"/>
+    <!--<import resource="classpath:spring-dubbo.xml"/>-->
 
 
 </beans>
