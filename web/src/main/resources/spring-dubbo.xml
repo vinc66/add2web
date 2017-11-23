@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-               xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-<dubbo:application name="consumer-of-auth-service" />
-<dubbo:registry address="zookeeper://${dubbo.zookeeper.address}"/>
-<dubbo:protocol serialization="fastjson" />
+    <dubbo:application name="consumer-of-auth-service"/>
+    <dubbo:registry address="zookeeper://${dubbo.zookeeper.address}"/>
+    <dubbo:protocol serialization="fastjson"/>
 
-<dubbo:reference id="accountService" interface="com.vinc.service.auth.AccountService"
-                 timeout="10000"
-                 check="false"
-                 version="1.0"/>
+    <dubbo:reference id="accountService" interface="com.vinc.service.auth.AccountService"
+                     timeout="10000"
+                     check="false"
+                     retries="0"
+                     version="1.0"/>
+
+    <!--retries 0 失联不重复-->
+    <dubbo:reference id="orderService" interface="com.vinc.service.order.api.OrderService"
+                     timeout="3000"
+                     check="false"
+                     retries="0"
+                     version="1.0"/>
 
 </beans>

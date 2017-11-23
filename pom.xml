@@ -17,6 +17,7 @@
         <module>web</module>
         <module>service-auth</module>
         <module>data-ms</module>
+        <module>service-order</module>
     </modules>
 
     <properties>

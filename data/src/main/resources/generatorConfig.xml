@@ -53,7 +53,7 @@
 
 
 <generatorConfiguration>
-    <classPathEntry location="D:/workspace/mysql-connector-java-5.1.16.jar" />
+    <classPathEntry location="D:/mysql-connector-java-5.1.38.jar" />
     <!-- 配置数据源和生成的代码所存放的位置 -->
     <context id="context1">
 
@@ -64,16 +64,16 @@
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/add2web" userId="root"
-                        password="123123">
+                        password="root">
         </jdbcConnection>
         <!-- 所生成的实体类的位置默认资源包src -->
-        <javaModelGenerator targetPackage="com.vinc.domain" targetProject="src/main/java" />
+        <javaModelGenerator targetPackage="com.vinc.service.order.model" targetProject="src/main/java" />
         <!-- 所生成的sqlMap的影射文件的位置,默认资源包src -->
-        <sqlMapGenerator targetPackage="com.vinc.data.mapper" targetProject="src/main/resources" />
-        <javaClientGenerator targetPackage="com.vinc.data.mapper" targetProject="src/main/java" type="XMLMAPPER"   />
+        <sqlMapGenerator targetPackage="com.vinc.service.order.mapper" targetProject="src/main/resources" />
+        <javaClientGenerator targetPackage="com.vinc.service.order.mapper" targetProject="src/main/java" type="XMLMAPPER"   />
         <!-- 为哪些表生成代码 tableName:表名 schema:不用填写 -->
 
-        <table schema="" tableName="user" domainObjectName="User" enableCountByExample="false"
+        <table schema="" tableName="t_order" domainObjectName="Order" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"
         >

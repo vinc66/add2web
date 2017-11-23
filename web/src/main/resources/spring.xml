@@ -23,7 +23,7 @@
     </bean>
 
     <import resource="classpath:spring-mybatis.xml"/>
-    <!--<import resource="classpath:spring-dubbo.xml"/>-->
+    <import resource="classpath:spring-dubbo.xml"/>
 
 
 </beans>

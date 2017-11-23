@@ -34,7 +34,7 @@
         <property name="basePackage" value="cn.nhorizon.ads.monitor.mapper"/>
     </bean>-->
 
-    <dubbo:application name="${dubbo.application.name}" />
+    <dubbo:application name="vinc" />
     <dubbo:protocol   serialization="fastjson" port="${dubbo.protocol.port}" />
     <dubbo:registry address="zookeeper://${dubbo.registry.address}"/>
 
