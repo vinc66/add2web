@@ -75,6 +75,7 @@
         <hessian.version>4.0.7</hessian.version>
         <jstl.version>1.2</jstl.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <lombok.version>1.16.16</lombok.version>
 
         <maven.jar.plugin.version>2.3.2</maven.jar.plugin.version>
         <maven.war.plugin.version>2.1.1</maven.war.plugin.version>
