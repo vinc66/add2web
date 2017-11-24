@@ -17,3 +17,5 @@
 6.redis和db数据一致
     redis分布式锁
     缓存防穿透
+
+7.支持websocket
