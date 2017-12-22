@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Description:
  * @Date: created in 18:08 2017/3/13
  */
-@Controller
-@Slf4j
-@RequestMapping("/o")
+//@Controller
+//@Slf4j
+//@RequestMapping("/o")
 public class OrderController {
 
     @Autowired
